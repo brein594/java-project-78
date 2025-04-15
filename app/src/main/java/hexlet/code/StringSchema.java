@@ -5,7 +5,7 @@ import java.util.Objects;
 public class StringSchema extends BaseSchema<String> {
 
     public StringSchema required() {
-        addValidation("required", (object) -> !object.isEmpty() );
+        addValidation("required", (object) -> !(object.toString().isEmpty()) );
         return this;
     }
 
@@ -14,7 +14,7 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
     public StringSchema minLength() {
-        addValidation("minLength", (object) -> object.length() > 0);
+        addValidation("minLength", (object) -> object.toString().length() > 0);
         return this;
     }
 
