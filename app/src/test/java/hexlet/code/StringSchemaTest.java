@@ -14,7 +14,7 @@ class StringSchemaTest {
     void requiredTest() {
         assertTrue(schema.required().isValid("Hello"));
         assertFalse(schema.required().isValid(""));
-        //assertFalse(schema.required().isValid(null));
+        assertFalse(schema.required().isValid(null));
     }
 
     @Test
