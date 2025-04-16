@@ -30,11 +30,6 @@ public class App {
         System.out.println(schema2.minLength().isValid("what does the fox say"));
         System.out.println(schema2.minLength(4).minLength(100).isValid("what does the fox say"));
 */
-        var schemaM = new MapSchema();
-        HashMap<String, String> map1 = new HashMap<>(Map.of("key1", "value1", "key2", "value2"));
-        HashMap<String, String> map2 = new HashMap<>(Map.of("key1", null, "key2", "value2"));
-        System.out.println(schemaM.isValid(map1));
-
 
     }
 }
