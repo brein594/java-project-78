@@ -12,18 +12,8 @@ public abstract class BaseSchema<T> {
     }
 
     public boolean isValid(T object) {
-
-        var keys = validations.keySet();
-        for (var key : keys) {
-            if (!validations.get(key).test(object)) {
-                return false;
-            }
-        }
-         /*
-        validations.values().stream()
-                .allMatch(true)
-        */
-        return true;
+       return validations.values().stream()
+                .allMatch( value -> value.test(object));
     }
 
 }

@@ -6,22 +6,18 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         var v1 = new Validator();
-        var schema1 = v1.string();
+        var schema1 = v1.map();
 
-        var v2 = new Validator();
-        var schema2 = v2.number();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        schemas.put("firstName", v1.string().required());
+        schemas.put("lastName", v1.string().required().minLength(2));
 
-        var v3 = new Validator();
-        var schema3 = v3.map();
+        schema1.shape(schemas);
 
-        System.out.println(schema1.getClass());
-        System.out.println(schema2.getClass());
-        System.out.println(schema3.getClass());
-        System.out.println(v1.getClass());
-        System.out.println(v1.toString());
-        System.out.println(schema1.toString());
-
-
+        Map<String,String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "B");
+        System.out.println(schema1.isValid(human1));
 /*
         var schema = new StringSchema().required().minLength(10);
         System.out.println(schema.isValid("555555"));

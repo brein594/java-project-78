@@ -14,7 +14,7 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
     public StringSchema minLength() {
-        addValidation("minLength", (object) -> object.toString().length() > 0);
+        addValidation("minLength", (object) -> !object.isEmpty());
         return this;
     }
 

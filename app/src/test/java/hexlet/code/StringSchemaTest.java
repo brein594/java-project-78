@@ -11,6 +11,12 @@ class StringSchemaTest {
     private final StringSchema schema = new StringSchema();
 
     @Test
+    void StringTest() {
+        assertTrue(schema.isValid("Hello"));
+        assertTrue(schema.isValid(null));
+    }
+
+    @Test
     void requiredTest() {
         assertTrue(schema.required().isValid("Hello"));
         assertFalse(schema.required().isValid(""));
@@ -22,6 +28,7 @@ class StringSchemaTest {
         assertTrue(schema.minLength(5).isValid("Hello"));
         assertTrue(schema.minLength().isValid("Hello"));
         assertFalse(schema.minLength(5).isValid("He"));
+        //assertFalse(schema.minLength(5).isValid(null));
     }
 
     @Test
@@ -30,4 +37,14 @@ class StringSchemaTest {
         assertTrue(schema.contains("").isValid("Hello"));
         assertFalse(schema.contains("Hee").isValid("Hello"));
     }
+
+    @Test
+    void completedTest() {
+        assertTrue(schema.required().minLength(5).contains("He").isValid("Hello"));
+        assertTrue(schema.minLength(100).minLength(5).contains("He").isValid("Hello"));
+        assertFalse(schema.required().minLength(5).contains("He").isValid("Hel"));
+        assertFalse(schema.required().minLength(5).contains("He").isValid("Hllo"));
+        //assertFalse(schema.required().minLength(5).contains("He").isValid(null));
+    }
+
 }
