@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public abstract class BaseSchema<T> {
+public abstract  class BaseSchema<T> {
     private final Map<String, Predicate<T>> validations = new HashMap<>();
 
-    protected void addValidation(String name, Predicate<T> validation) {
+    protected final void addValidation(String name, Predicate<T> validation) {
         validations.put(name, validation);
     }
 
