@@ -14,9 +14,9 @@ public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema positive() {
         addValidation("positive", (object) -> {
             if (object == null) {
-                return false;
+                return true;
             }
-            return object >= 1;
+            return object > 0;
         });
         return this;
     }
