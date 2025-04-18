@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +13,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class MapSchemaTest {
     private Validator v;
     private MapSchema schema;
-    private final HashMap<String, String> map1 = new HashMap<>(Map.of("key1", "value1", "key2", "value2"));;
-    private final HashMap<String, String> map2 = null;
+    private static HashMap<String, String> map1;
+    private static HashMap<String, String> map2;
 
+    @BeforeAll
+    static void initFixture() {
+        map1 = new HashMap<>(Map.of("key1", "value1", "key2", "value2"));
+        map2 = null;
+    }
 
     @BeforeEach
     void init() {
-        v = new  Validator();
+        v = new Validator();
         schema = v.map();
     }
 
@@ -32,6 +38,7 @@ class MapSchemaTest {
     void sizeofTest() {
         assertTrue(schema.sizeof(2).isValid(map1));
         assertFalse(schema.sizeof(3).isValid(map1));
+        assertFalse(schema.sizeof(3).isValid(map2));
     }
 
 

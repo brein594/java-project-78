@@ -10,12 +10,23 @@ public class NumberSchema extends BaseSchema<Number> {
     }
 
     public NumberSchema positive() {
-        addValidation("positive(", (object) -> (int) object >= 0);
+        addValidation("positive", (object) -> {
+            if (object == null) {
+                return false;
+            }
+            return (int) object >= 0;
+        });
         return this;
     }
 
     public NumberSchema range(int beginning, int end) {
-        addValidation("range", (object) -> (beginning <= (int) object) && ((int) object <= end));
+        addValidation("range", (object) -> {
+            if (object == null) {
+                return false;
+            }
+            return beginning <= (int) object
+                    && ((int) object <= end);
+        });
         return this;
     }
 }

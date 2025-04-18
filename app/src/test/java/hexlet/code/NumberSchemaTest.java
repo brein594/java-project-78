@@ -12,7 +12,7 @@ class NumberSchemaTest {
 
     @BeforeEach
     void init() {
-        v = new  Validator();
+        v = new Validator();
         schema = v.number();
     }
 
@@ -28,6 +28,7 @@ class NumberSchemaTest {
     void positive() {
         assertTrue(schema.positive().isValid(10));
         assertFalse(schema.positive().isValid(-10));
+        assertFalse(schema.positive().isValid(null));
     }
 
     @Test
@@ -37,5 +38,14 @@ class NumberSchemaTest {
         assertTrue(schema.range(5, 20).isValid(20));
         assertFalse(schema.range(5, 20).isValid(25));
         assertFalse(schema.range(5, 20).isValid(4));
+        assertFalse(schema.range(5, 20).isValid(null));
+    }
+
+    @Test
+    void complexNumberTest() {
+        assertTrue(schema.required().positive().range(5, 20).isValid(10));
+        assertFalse(schema.required().positive().range(5, 20).isValid(21));
+        assertFalse(schema.required().positive().range(5, 20).isValid(4));
+        assertFalse(schema.positive().range(5, 20).isValid(null));
     }
 }
