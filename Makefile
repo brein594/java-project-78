@@ -10,3 +10,5 @@ run:
 	make -C ./app run
 check:
 	make -C ./app check
+test:
+	make -C ./app test

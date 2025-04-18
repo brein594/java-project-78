@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -9,9 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MapSchemaTest {
-    private final MapSchema schema = new MapSchema();
-    private HashMap<String, String> map1 = new HashMap<>(Map.of("key1", "value1", "key2", "value2"));
-    private HashMap<String, String> map2 = null;
+    private Validator v;
+    private MapSchema schema;
+    private final HashMap<String, String> map1 = new HashMap<>(Map.of("key1", "value1", "key2", "value2"));;
+    private final HashMap<String, String> map2 = null;
+
+
+    @BeforeEach
+    void init() {
+        v = new  Validator();
+        schema = v.map();
+    }
 
     @Test
     void requiredTest() {

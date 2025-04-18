@@ -1,8 +1,11 @@
 package hexlet.code;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class App {
     public static void main(String[] args) {
-/*
+
         var v1 = new Validator();
         var schema1 = v1.map();
 
@@ -18,6 +21,10 @@ public class App {
         human1.put("lastName", "B");
         System.out.println(schema1.isValid(human1));
 
+        schemas.put("lastName", v1.string().required().minLength(3));
+        System.out.println(schema1.isValid(human1));
+
+/*
         var v = new Validator();
         var schema1 = v.string();
 

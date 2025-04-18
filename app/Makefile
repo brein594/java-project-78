@@ -10,3 +10,5 @@ run:
 	./gradlew run
 check:
 	./gradlew check
+test:
+	./gradlew test
