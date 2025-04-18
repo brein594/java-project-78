@@ -16,7 +16,7 @@ public class NumberSchema extends BaseSchema<Number> {
             if (object == null) {
                 return false;
             }
-            return (int) object >= 0;
+            return (int) object > 0;
         });
         return this;
     }

@@ -15,9 +15,14 @@ class NumberSchemaTest {
         v = new Validator();
         schema = v.number();
     }
+    @Test
+    void numberSchemaTest() {
+        assertTrue(schema.isValid(10));
+        assertTrue(schema.isValid(null));
+    }
 
     @Test
-    void required() {
+    void requiredTest() {
         assertTrue(schema.required().isValid(10));
         assertTrue(schema.required().isValid(0));
         assertTrue(schema.required().isValid(-10));
@@ -25,14 +30,15 @@ class NumberSchemaTest {
     }
 
     @Test
-    void positive() {
+    void positiveTest() {
         assertTrue(schema.positive().isValid(10));
         assertFalse(schema.positive().isValid(-10));
+        assertFalse(schema.positive().isValid(0));
         assertFalse(schema.positive().isValid(null));
     }
 
     @Test
-    void range() {
+    void rangeTest() {
         assertTrue(schema.range(5, 20).isValid(10));
         assertTrue(schema.range(5, 20).isValid(5));
         assertTrue(schema.range(5, 20).isValid(20));
