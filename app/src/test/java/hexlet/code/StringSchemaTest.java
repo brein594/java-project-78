@@ -1,7 +1,5 @@
 package hexlet.code;
 
-//import org.junit.jupiter.api.BeforeAll;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,7 +9,7 @@ class StringSchemaTest {
     private final StringSchema schema = new StringSchema();
 
     @Test
-    void StringTest() {
+    void stringTest() {
         assertTrue(schema.isValid("Hello"));
         assertTrue(schema.isValid(null));
     }

@@ -8,3 +8,5 @@ installDist:
 	./gradlew installDist
 run:
 	./gradlew run
+check:
+	./gradlew check

@@ -2,7 +2,8 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class NumberSchemaTest {
     private final NumberSchema schema = new NumberSchema();

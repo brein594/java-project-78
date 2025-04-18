@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import java.util.Objects;
-
 public class StringSchema extends BaseSchema<String> {
 
     public StringSchema required() {
@@ -13,6 +11,7 @@ public class StringSchema extends BaseSchema<String> {
         addValidation("minLength", (object) -> object.length() >= minLength);
         return this;
     }
+
     public StringSchema minLength() {
         addValidation("minLength", (object) -> !object.isEmpty());
         return this;

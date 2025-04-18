@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MapSchemaTest {
     private final MapSchema schema = new MapSchema();
@@ -37,13 +38,13 @@ class MapSchemaTest {
 
         schema1.shape(schemas);
 
-        Map<String,String> human1 = new HashMap<>();
+        Map<String, String> human1 = new HashMap<>();
         human1.put("firstName", "John");
         human1.put("lastName", "Bob");
 
         assertTrue(schema1.sizeof(2).isValid(human1));
 
-        Map<String,String> human2 = new HashMap<>();
+        Map<String, String> human2 = new HashMap<>();
         human1.put("firstName", "John");
         human1.put("lastName", "B");
         assertFalse(schema1.sizeof(2).isValid(human2));
