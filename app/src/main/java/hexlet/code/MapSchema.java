@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;

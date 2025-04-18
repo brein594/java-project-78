@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import org.apache.commons.lang3.StringUtils;
 
 public class StringSchema extends BaseSchema<String> {

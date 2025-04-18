@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
+
 public class Validator extends BaseSchema<Object> {
     public StringSchema string() {
         return new StringSchema();

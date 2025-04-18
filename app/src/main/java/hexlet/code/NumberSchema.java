@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
+
 import java.util.Objects;
 
 public class NumberSchema extends BaseSchema<Number> {
