@@ -3,6 +3,7 @@ plugins {
     application
     jacoco
     checkstyle
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "hexlet.code"
@@ -44,4 +45,13 @@ application {
 }
 checkstyle {
     toolVersion = "10.12.4"
+}
+
+// Конфигурация плагина org.sonarqube
+sonar {
+    properties {
+        property("sonar.projectKey", "brein594_java-project-78")
+        property( "sonar.organization", "brein594")
+        property( "sonar.host.url", "https://sonarcloud.io")
+    }
 }
