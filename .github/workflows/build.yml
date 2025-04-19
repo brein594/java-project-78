@@ -23,6 +23,7 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
+          workingDirectory: ./app
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
