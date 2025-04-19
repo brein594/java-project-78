@@ -16,6 +16,7 @@ jobs:
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
+          workingDirectory: ./app
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
@@ -28,5 +29,4 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        workingDirectory: ./app
         run: ./gradlew build sonar --info
