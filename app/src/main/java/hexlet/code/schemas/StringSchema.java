@@ -10,34 +10,23 @@ public final class  StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength(int minLength) {
-        addValidation("minLength", (object) -> {
-            if (!StringUtils.isNoneEmpty(object)) {
-                return false;
-            } else {
-                return object.length() >= minLength;
-            }
-        });
+        addValidation("minLength", (object) ->
+                StringUtils.isNoneEmpty(object) && object.length() >= minLength
+        );
         return this;
     }
 
     public StringSchema minLength() {
-        addValidation("minLength", (object) -> {
-            if (!StringUtils.isNoneEmpty(object)) {
-                return false;
-            } else {
-                return !object.isEmpty();
-            }
-        });
+        addValidation("minLength", (object) ->
+                StringUtils.isNoneEmpty(object) && !object.isEmpty()
+        );
         return this;
     }
 
     public StringSchema contains(String container) {
-        addValidation("contains", (object) -> {
-            if (!StringUtils.isNoneEmpty(object)) {
-                return false;
-            }
-            return object.contains(container);
-        });
+        addValidation("contains", (object) ->
+                StringUtils.isNoneEmpty(object) && object.contains(container)
+        );
         return this;
     }
 

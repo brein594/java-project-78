@@ -12,21 +12,16 @@ public final class MapSchema extends BaseSchema<Map<String, String>> {
     }
 
     public MapSchema sizeof(int sizeMap) {
-        addValidation("sizeof", (object) -> {
-            if ((Object) object == null) {
-                return false;
-            }
-            return object.size() == sizeMap;
-        });
+        addValidation("sizeof", (object) ->
+            ((Object) object != null) && (object.size() == sizeMap)
+        );
         return this;
     }
 
     public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
         Predicate<Map<String, String>> shapePredicate = map -> schemas.keySet().stream()
                 .allMatch(key -> schemas.get(key).isValid((T) map.get(key)));
-
         addValidation("shape", shapePredicate);
-
         return this;
     }
 }
