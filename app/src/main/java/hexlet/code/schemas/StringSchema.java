@@ -1,6 +1,5 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
-import hexlet.code.schemas.BaseSchema;
 import org.apache.commons.lang3.StringUtils;
 
 public final class  StringSchema extends BaseSchema<String> {
@@ -14,8 +13,9 @@ public final class  StringSchema extends BaseSchema<String> {
         addValidation("minLength", (object) -> {
             if (!StringUtils.isNoneEmpty(object)) {
                 return false;
+            } else {
+                return object.length() >= minLength;
             }
-            return object.length() >= minLength;
         });
         return this;
     }
@@ -24,8 +24,9 @@ public final class  StringSchema extends BaseSchema<String> {
         addValidation("minLength", (object) -> {
             if (!StringUtils.isNoneEmpty(object)) {
                 return false;
+            } else {
+                return !object.isEmpty();
             }
-            return !object.isEmpty();
         });
         return this;
     }
