@@ -157,24 +157,21 @@ class ValidatorTest {
 
         @Test
         void shapeTest() {
-            var v1 = new Validator();
-            var schema1 = v1.map();
-
             Map<String, BaseSchema<String>> schemas = new HashMap<>();
-            schemas.put("firstName", v1.string().required());
-            schemas.put("lastName", v1.string().required().minLength(3));
+            schemas.put("firstName", v.string().required());
+            schemas.put("lastName", v.string().required().minLength(3));
 
-            schema1.shape(schemas);
+            schema.shape(schemas);
 
             Map<String, String> human1 = new HashMap<>();
             human1.put("firstName", "John");
             human1.put("lastName", "Bob");
-            assertTrue(schema1.sizeof(2).isValid(human1));
+            assertTrue(schema.isValid(human1));
 
             Map<String, String> human2 = new HashMap<>();
             human1.put("firstName", "John");
             human1.put("lastName", "B");
-            assertFalse(schema1.sizeof(2).isValid(human2));
+            assertFalse(schema.isValid(human2));
         }
     }
 
