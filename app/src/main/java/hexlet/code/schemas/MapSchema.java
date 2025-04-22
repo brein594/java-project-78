@@ -19,9 +19,10 @@ public final class MapSchema extends BaseSchema<Map<String, String>> {
     }
 
     public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
-        Predicate<Map<String, String>> shapePredicate = map -> schemas.keySet().stream()
-                .allMatch(key -> schemas.get(key).isValid((T) map.get(key)));
+        Predicate<Map<String, String>> shapePredicate = map -> schemas.entrySet().stream()
+                .allMatch(entry -> entry.getValue().isValid((T) entry.getKey()));
         addValidation("shape", shapePredicate);
         return this;
     }
 }
+
