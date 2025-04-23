@@ -67,8 +67,8 @@ class ValidatorTest {
         void complexStringTest() {
             assertTrue(schema.required().minLength(5).contains("He").isValid("Hello"));
             assertTrue(schema.minLength(100).minLength(5).contains("He").isValid("Hello"));
-            assertFalse(schema.required().minLength(5).contains("He").isValid("Hel"));
-            assertFalse(schema.required().minLength(5).contains("He").isValid("Hllo"));
+            assertFalse(schema.minLength(5).contains("He").required().isValid("Hel"));
+            assertFalse(schema.minLength(5).contains("He").required().isValid("Hllo"));
         }
     }
 
