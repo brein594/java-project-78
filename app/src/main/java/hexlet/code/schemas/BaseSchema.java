@@ -3,6 +3,7 @@ package hexlet.code.schemas;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
@@ -13,14 +14,17 @@ public abstract class BaseSchema<T> {
     }
 
     public final boolean isValid(T object) {
-        boolean result;
+        boolean result = true;
         if (object == null) {
-            result = validations.getOrDefault("required", value -> true).test(null);
+            if (validations.containsKey("required")) {
+                return false;
+            }
         }
 
         try {
-            result = validations.values().stream()
-                    .allMatch(value -> value.test(object));
+            result = validations.entrySet().stream()
+                    //.filter(entry -> !entry.getKey().equals("required"))
+                    .allMatch(value -> value.getValue().test(object));
         } catch (NullPointerException e) {
             return false;
         }

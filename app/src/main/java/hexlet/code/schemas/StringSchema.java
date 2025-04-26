@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 public final class  StringSchema extends BaseSchema<String> {
 
     public StringSchema required() {
+        //addValidation("required", StringUtils::isNoneEmpty);
         addValidation("required", StringUtils::isNoneEmpty);
         return this;
     }
