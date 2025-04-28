@@ -13,19 +13,29 @@ public abstract class BaseSchema<T> {
     }
 
     public final boolean isValid(T object) {
-        boolean result = true;
+        boolean result;
         if (object == null) {
             if (validations.containsKey("required")) {
                 return false;
             }
-        }
-
-        try {
             result = validations.entrySet().stream()
-                    //.filter(entry -> !entry.getKey().equals("required"))
-                    .allMatch(value -> value.getValue().test(object));
-        } catch (NullPointerException e) {
-            return false;
+                    .allMatch(value -> {
+                        try {
+                            return value.getValue().test(null);
+                        } catch (NullPointerException e) {
+                            return false;
+                        }
+                    });
+
+        } else {
+            result = validations.entrySet().stream()
+                    .allMatch(value -> {
+                        try {
+                            return value.getValue().test(object);
+                        } catch (NullPointerException e) {
+                            return false;
+                        }
+                    });
         }
         return result;
     }
