@@ -17,25 +17,17 @@ public abstract class BaseSchema<T> {
         if (object == null) {
             if (validations.containsKey("required")) {
                 return false;
+            } else {
+                result = validations.values().stream().allMatch(value -> {
+                    try {
+                        return value.test(null);
+                    } catch (NullPointerException e) {
+                        return false;
+                    }
+                });
             }
-            result = validations.entrySet().stream()
-                    .allMatch(value -> {
-                        try {
-                            return value.getValue().test(null);
-                        } catch (NullPointerException e) {
-                            return false;
-                        }
-                    });
-
         } else {
-            result = validations.entrySet().stream()
-                    .allMatch(value -> {
-                        try {
-                            return value.getValue().test(object);
-                        } catch (NullPointerException e) {
-                            return false;
-                        }
-                    });
+            result = validations.values().stream().allMatch(value -> value.test(object));
         }
         return result;
     }

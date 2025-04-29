@@ -120,6 +120,7 @@ class ValidatorTest {
             assertTrue(schema.required().positive().range(5, 20).isValid(10));
             assertFalse(schema.required().positive().range(5, 20).isValid(21));
             assertFalse(schema.required().positive().range(5, 20).isValid(4));
+            assertFalse(schema.required().positive().range(5, 20).isValid(null));
             assertFalse(schema.positive().range(5, 20).isValid(null));
         }
     }

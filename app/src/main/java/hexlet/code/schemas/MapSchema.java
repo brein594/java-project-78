@@ -12,9 +12,7 @@ public final class MapSchema extends BaseSchema<Map<String, String>> {
     }
 
     public MapSchema sizeof(int sizeMap) {
-        addValidation("sizeof", (object) ->
-                ((Object) object != null) && (object.size() == sizeMap)
-        );
+        addValidation("sizeof", (object) -> object.size() == sizeMap);
         return this;
     }
 
