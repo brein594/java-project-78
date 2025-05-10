@@ -12,23 +12,41 @@ public abstract class BaseSchema<T> {
         validations.put(name, validation);
     }
 
+    public boolean checkRequired(T ob ) {
+        return true;
+    }
+
     public final boolean isValid(T object) {
-        boolean result;
-        if (object == null) {
+        boolean result = true;
+        if (object == null || (boolean) object.equals("")) {
             if (validations.containsKey("required")) {
                 return false;
-            } else {
-                result = validations.values().stream().allMatch(value -> {
+            } //else {
+                //result = true;
+                /*
+                result = validations.entrySet().stream()
+                //.filter(entry -> !entry.getKey().equals("required") )
+                .allMatch(value -> {
                     try {
-                        return value.test(null);
+                        return value.getValue().test(null);
                     } catch (NullPointerException e) {
                         return false;
                     }
                 });
-            }
-        } else {
-            result = validations.values().stream().allMatch(value -> value.test(object));
-        }
+
+                 */
+           // }
+        } //else {
+            result = validations.entrySet().stream()
+                    .filter(entry -> !entry.getKey().equals("required"))
+                    .allMatch(value -> {
+                        try {
+                            return value.getValue().test(object);
+                        } catch (NullPointerException e) {
+                            return false;
+                        }
+                    });
+        //}
         return result;
     }
 }
