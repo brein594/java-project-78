@@ -12,10 +12,6 @@ public abstract class BaseSchema<T> {
         validations.put(name, validation);
     }
 
-    public boolean checkRequired(T ob) {
-        return true;
-    }
-
     public final boolean isValid(T object) {
         boolean result = true;
         if (object == null || (boolean) object.equals("")) {
