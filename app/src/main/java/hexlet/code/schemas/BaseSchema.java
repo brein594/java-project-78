@@ -12,7 +12,7 @@ public abstract class BaseSchema<T> {
         validations.put(name, validation);
     }
 
-    public boolean checkRequired(T ob ) {
+    public boolean checkRequired(T ob) {
         return true;
     }
 
@@ -21,32 +21,17 @@ public abstract class BaseSchema<T> {
         if (object == null || (boolean) object.equals("")) {
             if (validations.containsKey("required")) {
                 return false;
-            } //else {
-                //result = true;
-                /*
-                result = validations.entrySet().stream()
-                //.filter(entry -> !entry.getKey().equals("required") )
+            }
+        }
+        result = validations.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals("required"))
                 .allMatch(value -> {
                     try {
-                        return value.getValue().test(null);
+                        return value.getValue().test(object);
                     } catch (NullPointerException e) {
                         return false;
                     }
                 });
-
-                 */
-           // }
-        } //else {
-            result = validations.entrySet().stream()
-                    .filter(entry -> !entry.getKey().equals("required"))
-                    .allMatch(value -> {
-                        try {
-                            return value.getValue().test(object);
-                        } catch (NullPointerException e) {
-                            return false;
-                        }
-                    });
-        //}
         return result;
     }
 }
