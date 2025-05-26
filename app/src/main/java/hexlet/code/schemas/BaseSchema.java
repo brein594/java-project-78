@@ -13,7 +13,7 @@ public abstract class BaseSchema<T> {
         validations.put(name, validation);
     }
 
-    protected boolean isEmpty(T object) {
+    protected final boolean isEmpty(T object) {
         return !validations.get("required").test(object);
     }
 
