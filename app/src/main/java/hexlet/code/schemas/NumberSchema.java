@@ -3,9 +3,12 @@ package hexlet.code.schemas;
 import java.util.Objects;
 
 public final class NumberSchema extends BaseSchema<Integer> {
+    public NumberSchema() {
+        addValidation("required", Objects::nonNull);
+    }
 
     public NumberSchema required() {
-        addValidation("required", Objects::nonNull);
+        required = true;
         return this;
     }
 
@@ -18,4 +21,5 @@ public final class NumberSchema extends BaseSchema<Integer> {
         addValidation("range", (object) -> beginning <= object && object <= end);
         return this;
     }
+
 }

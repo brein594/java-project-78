@@ -5,9 +5,12 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map<String, String>> {
+    public MapSchema() {
+        addValidation("required", Objects::nonNull);
+    }
 
     public MapSchema required() {
-        addValidation("required", Objects::nonNull);
+        required = true;
         return this;
     }
 
@@ -22,4 +25,5 @@ public final class MapSchema extends BaseSchema<Map<String, String>> {
         addValidation("shape", shapePredicate);
         return this;
     }
+
 }

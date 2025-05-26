@@ -17,6 +17,4 @@ public final class Validator extends BaseSchema<Object> {
     public MapSchema map() {
         return new MapSchema();
     }
-
-
 }

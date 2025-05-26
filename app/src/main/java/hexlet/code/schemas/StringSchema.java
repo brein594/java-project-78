@@ -2,11 +2,13 @@ package hexlet.code.schemas;
 
 import org.apache.commons.lang3.StringUtils;
 
-public final class  StringSchema extends BaseSchema<String> {
+public final class StringSchema extends BaseSchema<String> {
+    public StringSchema() {
+        addValidation("required", StringUtils::isNotEmpty);
+    }
 
     public StringSchema required() {
-        //addValidation("required", StringUtils::isNoneEmpty);
-        addValidation("required", StringUtils::isNoneEmpty);
+        required = true;
         return this;
     }
 
@@ -26,6 +28,4 @@ public final class  StringSchema extends BaseSchema<String> {
         );
         return this;
     }
-
-
 }
