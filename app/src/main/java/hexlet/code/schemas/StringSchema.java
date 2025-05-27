@@ -18,8 +18,7 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength() {
-        addValidation("minLength", (object) -> !object.isEmpty());
-        return this;
+        return minLength(1);
     }
 
     public StringSchema contains(String container) {
